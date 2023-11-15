@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+#include<fstream>
+using namespace std;
+
+long long itc_len(string str){
+    long long k;
+    for(long long i=0; str[i]!='\0'; i++){
+    k = i;
+    }
+    return k+1;
+}   //2
+
+string itc_reverse_str(string str){
+    string S1="";
+    for (int i=0; str[i]!='\0'; i++){
+         S1+= str[itc_len(str)-(i+1)];
+    }
+    return S1;
+}
+string PlusPlus(string st1,string st2){
+    string S = "";
+    int m=0;
+    st1 = itc_reverse_str(st1);
+    st2 = itc_reverse_str(st2);
+if (itc_len(st1)<itc_len(st2)){
+    for(int i =0; i<=itc_len(st2)-itc_len(st1); i++){
+        st1 += '0';
+    }
+}
+if (itc_len(st2)<itc_len(st1)){
+    for(int i =0; i<=itc_len(st1)-itc_len(st2); i++){
+        st2 += '0';
+    }
+}
+for(int i =0; i<itc_len(st1); i++){
+        if(st1[i]+st2[i]>'9'){
+            m=1;
+            S+=st1[i]+st2[i]-'9';
+        }
+        if[]
+    }
+    return(st2);
+}
+
+int main(){
+string st1, st2;
+cin >> st1 >> st2;
+cout << PlusPlus(st1, st2);
+return 0;
+}
