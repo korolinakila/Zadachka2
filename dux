@@ -11,6 +11,8 @@ long long itc_len(string str){
     return k+1;
 }   //2
 
+
+
 string itc_reverse_str(string str){
     string S1="";
     for (int i=0; str[i]!='\0'; i++){
@@ -18,34 +20,145 @@ string itc_reverse_str(string str){
     }
     return S1;
 }
+
+int Sravn(string st1, string st2){
+    st1 = itc_reverse_str(st1);
+    st2 = itc_reverse_str(st2);
+if (itc_len(st1)<itc_len(st2)){
+    for(int i =itc_len(st1); i<itc_len(st2); i++){
+        st1 += '0';
+    }
+}
+if (itc_len(st2)<itc_len(st1)){
+    for(int i =itc_len(st2); i<itc_len(st1); i++){
+        st2 += '0';
+    }
+}
+for(int i = itc_len(st1)-1; i>0; i--){
+    if(st1[i]-st2[i]>0){
+        return 1;
+    }
+    if(st2[i]-st1[i]>0){
+        return 2;
+    }
+}
+return 3;
+}
+
+string PlusMinus(string st1,string st2){
+string S = "";
+    int m=0;
+    st1 = itc_reverse_str(st1);
+    st2 = itc_reverse_str(st2);
+if (itc_len(st1)<itc_len(st2)){
+    for(int i =itc_len(st1); i<itc_len(st2); i++){
+        st1 += '0';
+    }
+}
+if (itc_len(st2)<itc_len(st1)){
+    for(int i =itc_len(st2); i<itc_len(st1); i++){
+        st2 += '0';
+    }
+}
+for(int i =0; i<itc_len(st1)-1; i++){
+        if(st2[i]<=st1[i]){
+            S+=st1[i]-st2[i]+'0';
+        }
+        if(st2[i]>st1[i]){
+            st1[i+1]-=1;
+            st1[i]+=10;
+            S+=st1[i]-st2[i]+'0';
+        }
+    }
+    if(st1[itc_len(st1)-1]-st2[itc_len(st2)-1]==0){
+        return(itc_reverse_str(S));
+    }
+    else{
+        S+=st1[itc_len(st1)-1]-st2[itc_len(st2)-1]+'0';
+        return(itc_reverse_str(S));
+    }
+    return(itc_reverse_str(S));
+}
+
 string PlusPlus(string st1,string st2){
     string S = "";
     int m=0;
     st1 = itc_reverse_str(st1);
     st2 = itc_reverse_str(st2);
 if (itc_len(st1)<itc_len(st2)){
-    for(int i =0; i<=itc_len(st2)-itc_len(st1); i++){
+    for(int i =itc_len(st1); i<itc_len(st2); i++){
         st1 += '0';
     }
 }
 if (itc_len(st2)<itc_len(st1)){
-    for(int i =0; i<=itc_len(st1)-itc_len(st2); i++){
+    for(int i =itc_len(st2); i<itc_len(st1); i++){
         st2 += '0';
     }
 }
 for(int i =0; i<itc_len(st1); i++){
-        if(st1[i]+st2[i]>'9'){
+        if(st1[i]+st2[i]+m>'9'+'0'){
+            S+=st1[i]+st2[i]+m-'9'-'2'+'1';
             m=1;
-            S+=st1[i]+st2[i]-'9';
         }
-        if[]
+        if(st1[i]+st2[i]+m<='9'+'0'){
+            S+=st1[i]+st2[i]+m-'0';
+            m=0;
+        }
     }
-    return(st2);
+    if(m==1){
+        S+='0'+m;
+    }
+    return(itc_reverse_str(S));
 }
 
 int main(){
-string st1, st2;
+int f;
+string st1, st2, st3="", st4="";
 cin >> st1 >> st2;
-cout << PlusPlus(st1, st2);
+if(st1[0]!='-' && st2[0]!='-'){
+    cout << PlusPlus(st1, st2);
+}
+if(st1[0]=='-' && st2[0]=='-'){
+    for(int i = 1; i<itc_len(st1); i++){
+        st3+=st1[i];
+    }
+    for(int i = 1; i<itc_len(st2); i++){
+        st4+=st2[i];
+    }
+    cout << "-" << PlusPlus(st3, st4);
+}
+
+if(st1[0]!='-' && st2[0]=='-'){
+    for(int i = 1; i<itc_len(st2); i++){
+        st3+=st2[i];
+    }
+    f = Sravn(st1, st2);
+    if(f==1){
+    cout << PlusMinus(st1, st3);
+    }
+    if(f==2){
+    cout << "-" << PlusMinus(st3, st1);
+    }
+    if(f==3){
+    cout << "0";
+    }
+
+}
+if(st1[0]=='-' && st2[0]!='-'){
+    for(int i = 1; i<itc_len(st1); i++){
+        st3+=st1[i];
+    }
+    f = Sravn(st1, st2);
+    if(f==1){
+    cout << "-" << PlusMinus(st3, st2);
+    }
+    if(f==2){
+    cout << PlusMinus(st2, st3);
+    }
+    if(f==3){
+    cout << "0";
+    }
+}
+
 return 0;
 }
