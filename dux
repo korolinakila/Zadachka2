@@ -34,7 +34,7 @@ if (itc_len(st2)<itc_len(st1)){
         st2 += '0';
     }
 }
-for(int i = itc_len(st1)-1; i>0; i--){
+for(int i = itc_len(st1)-1; i>=0; i--){
     if(st1[i]-st2[i]>0){
         return 1;
     }
@@ -148,7 +148,7 @@ if(st1[0]=='-' && st2[0]!='-'){
     for(int i = 1; i<itc_len(st1); i++){
         st3+=st1[i];
     }
-    f = Sravn(st1, st2);
+    f = Sravn(st3, st2);
     if(f==1){
     cout << "-" << PlusMinus(st3, st2);
     }
@@ -159,6 +159,5 @@ if(st1[0]=='-' && st2[0]!='-'){
     cout << "0";
     }
 }
-
 return 0;
 }
