@@ -113,12 +113,13 @@ for(int i =0; i<itc_len(st1); i++){
 
 int main(){
 int f;
+char k;
 string st1, st2, st3="", st4="";
-cin >> st1 >> st2;
-if(st1[0]!='-' && st2[0]!='-'){
+cin >> st1 >> st2 >> k;
+if(st1[0]!='-' && st2[0]!='-'&& k=='+'){    //++
     cout << PlusPlus(st1, st2);
 }
-if(st1[0]=='-' && st2[0]=='-'){
+if(st1[0]=='-' && st2[0]=='-' && k=='+'){   //--
     for(int i = 1; i<itc_len(st1); i++){
         st3+=st1[i];
     }
@@ -128,7 +129,7 @@ if(st1[0]=='-' && st2[0]=='-'){
     cout << "-" << PlusPlus(st3, st4);
 }
 
-if(st1[0]!='-' && st2[0]=='-'){
+if(st1[0]!='-' && st2[0]=='-'&& k=='+'){    //+-
     for(int i = 1; i<itc_len(st2); i++){
         st3+=st2[i];
     }
@@ -144,7 +145,7 @@ if(st1[0]!='-' && st2[0]=='-'){
     }
 
 }
-if(st1[0]=='-' && st2[0]!='-'){
+if(st1[0]=='-' && st2[0]!='-'&& k=='+'){    //-+
     for(int i = 1; i<itc_len(st1); i++){
         st3+=st1[i];
     }
@@ -158,6 +159,54 @@ if(st1[0]=='-' && st2[0]!='-'){
     if(f==3){
     cout << "0";
     }
+}
+//////////////////////////////////////////////////
+if(st1[0]!='-' && st2[0]!='-'&& k=='-'){    //+-
+    f = Sravn(st1, st2);
+    if(f==1){
+    cout << PlusMinus(st1, st2);
+    }
+    if(f==2){
+    cout << "-" << PlusMinus(st2, st1);
+    }
+    if(f==3){
+    cout << "0";
+    }
+}
+
+if(st1[0]=='-' && st2[0]=='-' && k=='-'){   //-+
+    for(int i = 1; i<itc_len(st1); i++){
+        st3+=st1[i];
+    }
+    for(int i = 1; i<itc_len(st2); i++){
+        st4+=st2[i];
+    }
+    f = Sravn(st3, st4);
+    if(f==1){
+    cout << "-" << PlusMinus(st3, st4);
+    }
+    if(f==2){
+    cout << PlusMinus(st4, st3);
+    }
+    if(f==3){
+    cout << "0";
+    }
+}
+
+if(st1[0]!='-' && st2[0]=='-'&& k=='-'){    //++
+    for(int i = 1; i<itc_len(st2); i++){
+        st3+=st2[i];
+    }
+    cout << PlusPlus(st1, st3);
+    }
+
+
+if(st1[0]=='-' && st2[0]!='-'&& k=='-'){        //--
+    for(int i = 1; i<itc_len(st1); i++){
+        st3+=st1[i];
+    }
+
+    cout << "-" << PlusPlus(st3, st2);
 }
 return 0;
 }
